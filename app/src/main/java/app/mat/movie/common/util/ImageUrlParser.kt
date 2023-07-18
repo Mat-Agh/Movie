@@ -1,0 +1,138 @@
+package app.mat.movie.common.util
+
+import android.util.Size
+import app.mat.movie.common.type.ImageType
+import app.mat.movie.common.type.MatchingStrategyType
+import app.mat.movie.data.remote.dto.common.ImagesConfigDto
+import kotlin.math.abs
+
+class ImageUrlParser(
+    imagesConfig: ImagesConfigDto
+) {
+    private val secureBaseUrl = imagesConfig.secureBaseUrl
+
+    private val backdropDimensions = convertCodes(imagesConfig.backdropSizes).distinct()
+    private val logoDimensions = convertCodes(imagesConfig.logoSizes).distinct()
+    private val posterDimensions = convertCodes(imagesConfig.posterSizes).distinct()
+    private val profileDimensions = convertCodes(imagesConfig.profileSizes).distinct()
+    private val stillDimensions = convertCodes(imagesConfig.stillSizes).distinct()
+
+    fun getImageUrl(
+        path: String?,
+        type: ImageType,
+        preferredSize: Size? = null,
+        strategy: MatchingStrategyType = MatchingStrategyType.FirstBiggerWidth
+    ): String? {
+        val source = when (type) {
+            ImageType.Backdrop -> backdropDimensions
+            ImageType.Logo -> logoDimensions
+            ImageType.Poster -> posterDimensions
+            ImageType.Profile -> profileDimensions
+            ImageType.Still -> stillDimensions
+        }
+
+        return urlFromSource(
+            source,
+            path,
+            preferredSize,
+            strategy
+        )
+    }
+
+    private fun urlFromSource(
+        source: List<Dimension>,
+        path: String?,
+        preferredSize: Size?,
+        strategy: MatchingStrategyType = MatchingStrategyType.FirstBiggerWidth
+    ): String? {
+        if (path == null) {
+            return null
+        }
+
+        if (preferredSize == null) {
+            return createSecureUrl(secureBaseUrl, Dimension.Original, path)
+        }
+
+        val preferredDimension = when (strategy) {
+            MatchingStrategyType.FirstBiggerWidth -> {
+                source.filterIsInstance<Dimension.Width>()
+                    .firstOrNull { dimension -> dimension.value >= preferredSize.width }
+            }
+
+            MatchingStrategyType.FirstBiggerHeight -> {
+                source.filterIsInstance<Dimension.Height>()
+                    .firstOrNull { dimension -> dimension.value >= preferredSize.height }
+            }
+
+            MatchingStrategyType.LowestWidthDiff -> {
+                source.filterIsInstance<Dimension.Width>().map { dimension ->
+                    dimension to abs(preferredSize.width - dimension.value)
+                }.minByOrNull { (_, delta) -> delta }?.first
+            }
+
+            MatchingStrategyType.LowestHeightDiff -> {
+                source.filterIsInstance<Dimension.Height>().map { dimension ->
+                    dimension to abs(preferredSize.height - dimension.value)
+                }.minByOrNull { (_, delta) -> delta }?.first
+            }
+        } ?: Dimension.Original
+
+        return createSecureUrl(secureBaseUrl, preferredDimension, path)
+    }
+
+    private sealed class Dimension(
+        val code: String
+    ) {
+        object Original : Dimension(code = "original")
+        data class Width(val value: Int) : Dimension(code = code) {
+            companion object {
+                const val code = "w"
+            }
+        }
+
+        data class Height(val value: Int) : Dimension(code = code) {
+            companion object {
+                const val code = "h"
+            }
+        }
+
+        fun asCode() = when (this) {
+            is Width -> "${Width.code}${this.value}"
+            is Height -> "${Height.code}${this.value}"
+            is Original -> "original"
+        }
+    }
+
+    private fun convertCodes(
+        codes: List<String>
+    ): List<Dimension> {
+        return codes.mapNotNull { code ->
+            when {
+                code.contains(Dimension.Original.code) -> Dimension.Original
+                code.contains(Dimension.Width.code) -> getValueFromCode(code)?.let { value ->
+                    Dimension.Width(value)
+                }
+
+                code.contains(Dimension.Height.code) -> getValueFromCode(code)?.let { value ->
+                    Dimension.Height(value)
+                }
+
+                else -> null
+            }
+        }
+    }
+
+    private fun getValueFromCode(
+        code: String
+    ): Int? {
+        return code.filter { char -> char.isDigit() }.toIntOrNull()
+    }
+
+    private fun createSecureUrl(
+        secureBaseUrl: String,
+        dimension: Dimension,
+        path: String
+    ): String {
+        return "${secureBaseUrl}${dimension.asCode()}${path}"
+    }
+}
