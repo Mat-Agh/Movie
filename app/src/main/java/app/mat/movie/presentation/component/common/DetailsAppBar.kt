@@ -67,7 +67,7 @@ fun DetailsAppBar(
         ) {
             action()
             Spacer(
-                modifier = androidx.compose.ui.Modifier.width(
+                modifier = Modifier.width(
                     MaterialTheme.spacing.small
                 )
             )
