@@ -9,8 +9,7 @@ maxSdk = "34"
 jvmVersion = "17"
 
 # Libraries Versions
-applicationVersion = "8.0.2"
-libraryVersion = "8.0.2"
+androidGradleVersion = "8.1.0-rc01"
 kotlinVersion = "1.8.22"
 kspVersion = "1.8.22-1.0.11"
 coreVersion = "1.12.0-alpha05"
@@ -108,8 +107,8 @@ textRecognition = { group = "com.google.mlkit", name = "text-recognition", versi
 
 [plugins]
 
-applicationPlugin = { id = "com.android.application", version.ref = "applicationVersion" }
-libraryPlugin = { id = "com.android.library", version.ref = "libraryVersion" }
+applicationPlugin = { id = "com.android.application", version.ref = "androidGradleVersion" }
+libraryPlugin = { id = "com.android.library", version.ref = "androidGradleVersion" }
 kotlinPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
 hiltPlugin = { id = "com.google.dagger.hilt.android", version.ref = "hiltVersion" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
