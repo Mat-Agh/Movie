@@ -4,7 +4,7 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-//region Variables
+//region Colors
 val Green10 = Color(0xff003314)
 val Green20 = Color(0xff006627)
 val Green30 = Color(0xff00993b)
@@ -54,9 +54,9 @@ val GreenGrey90 = Color(0xFFdcefe4)
 
 val Black = Color(0xFF000000)
 val White = Color(0xFFFFFFFF)
-//endregion Variables
+//endregion Colors
 
-//region Variables
+//region Palettes
 val DarkColorPalette = darkColorScheme(
     primary = Green80,
     onPrimary = Green20,
@@ -114,3 +114,4 @@ val LightColorPalette = lightColorScheme(
     onSurfaceVariant = GreenGrey30,
     outline = GreenGrey50
 )
+//endreigon Palettes
