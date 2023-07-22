@@ -1,5 +1,14 @@
 [versions]
 
+# Gradle Configuration
+packageName = "app.mat.movie"
+versionCode = "1"
+versionName = "1.0"
+minSdk = "26"
+maxSdk = "34"
+jvmVersion = "17"
+
+# Libraries Versions
 applicationVersion = "8.0.2"
 libraryVersion = "8.0.2"
 kotlinVersion = "1.8.22"

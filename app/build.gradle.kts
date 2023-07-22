@@ -23,20 +23,20 @@ plugins {
 }
 
 android {
-    namespace = "app.mat.movie"
+    namespace = libs.versions.packageName.get()
 
-    compileSdk = 34
+    compileSdk = libs.versions.maxSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "app.mat.movie"
+        applicationId = libs.versions.packageName.get()
 
-        minSdk = 26
+        minSdk = libs.versions.minSdk.get().toInt()
 
-        targetSdk = 34
+        targetSdk = libs.versions.maxSdk.get().toInt()
 
-        versionCode = 1
+        versionCode = libs.versions.versionCode.get().toInt()
 
-        versionName = "1.0"
+        versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -63,7 +63,9 @@ android {
     }
 
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(
+            libs.versions.jvmVersion.get().toInt()
+        )
 
         sourceSets {
             debug {
