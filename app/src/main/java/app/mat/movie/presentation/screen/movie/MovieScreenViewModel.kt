@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MovieScreenViewModel @Inject constructor(
-    private val getDeviceLanguageUseCase: GetDeviceLanguageUseCase,
+    getDeviceLanguageUseCase: GetDeviceLanguageUseCase,
     private val getNowPlayingMoviesUseCase: GetNowPlayingMoviesUseCase,
     private val getDiscoverAllMoviesUseCase: GetDiscoverAllMoviesUseCase,
     private val getUpcomingMoviesUseCase: GetUpcomingMoviesUseCase,

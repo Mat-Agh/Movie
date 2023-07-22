@@ -6,11 +6,11 @@ import app.mat.movie.R
 sealed class SnackBarEvent(
     @StringRes val messageStringRes: Int
 ) {
-    object NetworkDisconnected : SnackBarEvent(
+    data object NetworkDisconnected : SnackBarEvent(
         R.string.snack_bar_network_disconnected_label
     )
 
-    object NetworkConnected : SnackBarEvent(
+    data object NetworkConnected : SnackBarEvent(
         R.string.snack_bar_network_connected_label
     )
 }

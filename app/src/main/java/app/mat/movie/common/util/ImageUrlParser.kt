@@ -83,7 +83,7 @@ class ImageUrlParser(
     private sealed class Dimension(
         val code: String
     ) {
-        object Original : Dimension(code = "original")
+        data object Original : Dimension(code = "original")
         data class Width(val value: Int) : Dimension(code = code) {
             companion object {
                 const val code = "w"

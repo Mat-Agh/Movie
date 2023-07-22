@@ -32,7 +32,6 @@ import app.mat.movie.presentation.component.text.ExpandableText
 import app.mat.movie.presentation.theme.spacing
 import java.util.*
 
-@OptIn(ExperimentalAnimationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun MovplayMovieDetailsInfoSection(

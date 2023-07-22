@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ShowScreenViewModel @Inject constructor(
-    private val getDeviceLanguageUseCase: GetDeviceLanguageUseCase,
+    getDeviceLanguageUseCase: GetDeviceLanguageUseCase,
     private val getOnTheAirShowsUseCase: GetOnTheAirShowsUseCase,
     private val getDiscoverAllShowsUseCase: GetDiscoverAllShowsUseCase,
     private val getTopRatedShowsUseCase: GetTopRatedShowsUseCase,

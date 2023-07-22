@@ -22,7 +22,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val networkStatusTracker: NetworkStatusTracker,
+    networkStatusTracker: NetworkStatusTracker,
     private val configRepository: ConfigRepository
 ) : BaseViewModel() {
     //region Variables

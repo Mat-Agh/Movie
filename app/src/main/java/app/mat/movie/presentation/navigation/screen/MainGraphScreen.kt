@@ -12,15 +12,15 @@ sealed class MainGraphScreen(
     //endregion Companion Object
 
     //region Screen Objects
-    object Main : MainGraphScreen(
+    data object Main : MainGraphScreen(
         route = MAIN_GRAPH_ROUTE_KEY
     )
 
-    object MainScreen : MainGraphScreen(
+    data object MainScreen : MainGraphScreen(
         route = MAIN_SCREEN_ROUTE_KEY
     )
 
-    object NavigationBar : MainGraphScreen(
+    data object NavigationBar : MainGraphScreen(
         route = NAVIGATION_BAR_GRAPH_ROUTE_KEY
     )
     //endregion Screen Objects

@@ -21,8 +21,8 @@ abstract class TextRecognitionHelper {
     ): Flow<ScanState>
 
     sealed class ScanState {
-        object Idle : ScanState()
-        object Loading : ScanState()
+        data object Idle : ScanState()
+        data object Loading : ScanState()
         data class InvalidText(
             val errorResId: Int
         ) : ScanState()
@@ -150,19 +150,19 @@ object ScannedTextValidator {
     private const val MAX_TEST_LENGTH = 20
 
     sealed class ValidationResult {
-        object Valid : ValidationResult()
+        data object Valid : ValidationResult()
         sealed class Invalid(
             val errorResId: Int
         ) : ValidationResult() {
-            object Empty : Invalid(
+            data object Empty : Invalid(
                 R.string.scanner_error_info_no_text
             )
 
-            object ToShort : Invalid(
+            data object ToShort : Invalid(
                 R.string.scanner_error_info_to_short_text
             )
 
-            object ToLong : Invalid(
+            data object ToLong : Invalid(
                 R.string.scanner_error_info_to_long_text
             )
         }

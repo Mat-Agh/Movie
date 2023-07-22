@@ -26,8 +26,8 @@ data class PersonDetailsScreenUIState(
 
 @Stable
 sealed class PersonDetailsState {
-    object Loading : PersonDetailsState()
-    object Error : PersonDetailsState()
+    data object Loading : PersonDetailsState()
+    data object Error : PersonDetailsState()
     data class Result(
         val details: PersonDetailsDto
     ) : PersonDetailsState()

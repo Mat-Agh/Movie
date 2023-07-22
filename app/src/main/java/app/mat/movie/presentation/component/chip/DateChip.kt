@@ -1,7 +1,6 @@
 package app.mat.movie.presentation.component.chip
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.scaleIn
@@ -33,9 +32,6 @@ import app.mat.movie.common.util.formatted
 import app.mat.movie.presentation.theme.spacing
 import java.util.Date
 
-@OptIn(
-    ExperimentalAnimationApi::class
-)
 @Composable
 fun DateChip(
     initialDate: Date?,

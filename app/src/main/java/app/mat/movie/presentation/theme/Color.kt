@@ -114,4 +114,4 @@ val LightColorPalette = lightColorScheme(
     onSurfaceVariant = GreenGrey30,
     outline = GreenGrey50
 )
-//endreigon Palettes
+//endregion Palettes

@@ -32,31 +32,31 @@ sealed class NavigationBarGraphScreen(
     //endregion Companion
 
     //region Screen Objects
-    object MovieScreen : NavigationBarGraphScreen(
+    data object MovieScreen : NavigationBarGraphScreen(
         route = MOVIE_SCREEN_ROUTE_KEY,
         title = MOVIE_SCREEN_TITLE,
         icon = Icons.Filled.Movie
     )
 
-    object ShowScreen : NavigationBarGraphScreen(
+    data object ShowScreen : NavigationBarGraphScreen(
         route = SHOW_SCREEN_ROUTE_KEY,
         title = SHOW_SCREEN_TITLE,
         icon = Icons.Filled.LiveTv
     )
 
-    object FavoriteScreen : NavigationBarGraphScreen(
+    data object FavoriteScreen : NavigationBarGraphScreen(
         route = FAVORITE_SCREEN_ROUTE_KEY,
         title = FAVORITE_SCREEN_TITLE,
         icon = Icons.Filled.Favorite
     )
 
-    object SearchScreen : NavigationBarGraphScreen(
+    data object SearchScreen : NavigationBarGraphScreen(
         route = SEARCH_SCREEN_ROUTE_KEY,
         title = SEARCH_SCREEN_TITLE,
         icon = Icons.Filled.Search
     )
 
-    object Application : MainGraphScreen(
+    data object Application : MainGraphScreen(
         route = APPLICATION_GRAPH_ROUTE_KEY
     )
     //endregion Screen Objects

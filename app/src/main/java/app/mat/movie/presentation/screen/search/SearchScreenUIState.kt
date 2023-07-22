@@ -42,9 +42,9 @@ data class SearchOptionsState(
 }
 
 sealed class SearchState {
-    object EmptyQuery : SearchState()
-    object InsufficientQuery : SearchState()
-    object ValidQuery : SearchState()
+    data object EmptyQuery : SearchState()
+    data object InsufficientQuery : SearchState()
+    data object ValidQuery : SearchState()
 }
 
 sealed class ResultState {

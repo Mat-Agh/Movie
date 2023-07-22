@@ -69,7 +69,7 @@ sealed class ApplicationGraphScreen(
     //endregion
 
     //region Screen Objects
-    object MovieDetailsScreen : ApplicationGraphScreen(
+    data object MovieDetailsScreen : ApplicationGraphScreen(
         route = MovieDetailsScreenData.MOVIE_DETAILS_SCREEN_ROUTE_KEY +
                 "/{${MovieDetailsScreenData.MOVIE_DETAILS_REQUIRED_ARGUMENT_MOVIE_ID}}" +
                 "/{${MovieDetailsScreenData.MOVIE_DETAILS_REQUIRED_ARGUMENT_START_ROUTE}}"
@@ -82,7 +82,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object ShowDetailsScreen : ApplicationGraphScreen(
+    data object ShowDetailsScreen : ApplicationGraphScreen(
         route = ShowDetailsScreenData.SHOW_DETAILS_SCREEN_ROUTE_KEY +
                 "/{${ShowDetailsScreenData.SHOW_DETAILS_REQUIRED_ARGUMENT_SHOW_ID}}" +
                 "/{${ShowDetailsScreenData.SHOW_DETAILS_REQUIRED_ARGUMENT_START_ROUTE}}"
@@ -95,7 +95,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object PersonDetailsScreen : ApplicationGraphScreen(
+    data object PersonDetailsScreen : ApplicationGraphScreen(
         route = PersonDetailsScreenData.PERSON_DETAILS_SCREEN_ROUTE_KEY +
                 "/{${PersonDetailsScreenData.PERSON_DETAILS_REQUIRED_ARGUMENT_PERSON_ID}}" +
                 "/{${PersonDetailsScreenData.PERSON_DETAILS_REQUIRED_ARGUMENT_START_ROUTE}}"
@@ -108,7 +108,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object RelatedMoviesScreen : ApplicationGraphScreen(
+    data object RelatedMoviesScreen : ApplicationGraphScreen(
         route = RelatedMoviesScreenData.RELATED_MOVIES_SCREEN_ROUTE_KEY +
                 "/{${RelatedMoviesScreenData.RELATED_MOVIES_REQUIRED_ARGUMENT_MOVIE_ID}}" +
                 "/{${RelatedMoviesScreenData.RELATED_MOVIES_REQUIRED_ARGUMENT_RELATION_TYPE}}" +
@@ -124,7 +124,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object RelatedShowsScreen : ApplicationGraphScreen(
+    data object RelatedShowsScreen : ApplicationGraphScreen(
         route = RelatedShowsScreenData.RELATED_SHOWS_SCREEN_ROUTE_KEY +
                 "/{${RelatedShowsScreenData.RELATED_SHOWS_REQUIRED_ARGUMENT_SHOW_ID}}" +
                 "/{${RelatedShowsScreenData.RELATED_SHOWS_REQUIRED_ARGUMENT_RELATION_TYPE}}" +
@@ -140,7 +140,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object SeasonsScreen : ApplicationGraphScreen(
+    data object SeasonsScreen : ApplicationGraphScreen(
         route = SeasonsScreenData.SEASONS_SCREEN_ROUTE_KEY +
                 "/{${SeasonsScreenData.SEASONS_REQUIRED_ARGUMENT_SHOW_ID}}" +
                 "/{${SeasonsScreenData.SEASONS_REQUIRED_ARGUMENT_SEASON_NUMBER}}" +
@@ -156,7 +156,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object ReviewScreen : ApplicationGraphScreen(
+    data object ReviewScreen : ApplicationGraphScreen(
         route = ReviewScreenData.REVIEW_SCREEN_ROUTE_KEY +
                 "/{${ReviewScreenData.REVIEW_REQUIRED_ARGUMENT_MEDIA_ID}}" +
                 "/{${ReviewScreenData.REVIEW_REQUIRED_ARGUMENT_MEDIA_TYPE}}" +
@@ -172,7 +172,7 @@ sealed class ApplicationGraphScreen(
                 "/$startRoute"
     }
 
-    object BrowseMovieScreen : ApplicationGraphScreen(
+    data object BrowseMovieScreen : ApplicationGraphScreen(
         route = BrowseMovieScreenData.BROWSE_MOVIE_SCREEN_ROUTE_KEY +
                 "/{${BrowseMovieScreenData.BROWSE_MOVIE_REQUIRED_ARGUMENT_MOVIE_TYPE}}"
     ) {
@@ -181,7 +181,7 @@ sealed class ApplicationGraphScreen(
         ): String = ReviewScreenData.REVIEW_SCREEN_ROUTE_KEY + "/$movieType"
     }
 
-    object BrowseShowsScreen : ApplicationGraphScreen(
+    data object BrowseShowsScreen : ApplicationGraphScreen(
         route = BrowseShowsScreenData.BROWSE_SHOWS_SCREEN_ROUTE_KEY +
                 "/{${BrowseShowsScreenData.BROWSE_SHOWS_REQUIRED_ARGUMENT_SHOW_TYPE}}"
     ) {
@@ -190,15 +190,15 @@ sealed class ApplicationGraphScreen(
         ): String = ReviewScreenData.REVIEW_SCREEN_ROUTE_KEY + "/$showType"
     }
 
-    object DiscoverMovieScreen : ApplicationGraphScreen(
+    data object DiscoverMovieScreen : ApplicationGraphScreen(
         route = DISCOVER_MOVIE_SCREEN_ROUTE_KEY
     )
 
-    object DiscoverShowsScreen : ApplicationGraphScreen(
+    data object DiscoverShowsScreen : ApplicationGraphScreen(
         route = DISCOVER_SHOWS_SCREEN_ROUTE_KEY
     )
 
-    object ScannerScreen : ApplicationGraphScreen(
+    data object ScannerScreen : ApplicationGraphScreen(
         route = SCANNER_SCREEN_ROUTE_KEY
     )
     //endregion Screen Objects

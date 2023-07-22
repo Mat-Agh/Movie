@@ -3,7 +3,7 @@ package app.mat.movie.common
 import app.mat.movie.data.remote.dto.common.ApiErrorDto
 
 sealed class Resource<out T> {
-    class Loading<T>() : Resource<T>()
+    class Loading<T> : Resource<T>()
 
     class Success<T>(
         val data: T?,

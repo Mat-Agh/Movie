@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RangeSlider
 import androidx.compose.material3.Text
@@ -16,9 +15,6 @@ import androidx.compose.ui.unit.sp
 import app.mat.movie.common.util.singleDecimalPlaceFormatted
 import app.mat.movie.data.remote.dto.common.VoteRange
 
-@OptIn(
-    ExperimentalMaterial3Api::class
-)
 @Composable
 fun VoteRangeSlider(
     voteRange: VoteRange,

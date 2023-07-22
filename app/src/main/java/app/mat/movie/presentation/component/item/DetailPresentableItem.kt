@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,9 +15,6 @@ import app.mat.movie.data.remote.dto.common.DetailPresentableItemState
 import app.mat.movie.presentation.theme.ComposableSize
 import app.mat.movie.presentation.theme.sizes
 
-@OptIn(
-    ExperimentalMaterial3Api::class
-)
 @Composable
 fun DetailPresentableItem(
     presentableState: DetailPresentableItemState,
