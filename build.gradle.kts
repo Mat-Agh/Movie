@@ -42,6 +42,6 @@ tasks.register(
     "clean"
 ) {
     delete(
-        rootProject.buildDir
+        layout.buildDirectory
     )
 }
