@@ -5,27 +5,37 @@ buildscript {
     }
 }
 
+@Suppress(
+    "DSL_SCOPE_VIOLATION"
+)
 plugins {
-    id(
-        "com.android.application"
-    ) version "8.0.2" apply false
+    alias(
+        libs.plugins.applicationPlugin
+    ) apply false
 
-    id(
-        "com.android.library"
-    ) version "8.0.2" apply false
+    alias(
+        libs.plugins.libraryPlugin
+    ) apply false
 
-    id(
-        "org.jetbrains.kotlin.android"
-    ) version "1.8.22" apply false
+    alias(
+        libs.plugins.kotlinPlugin
+    ) apply false
 
-    id(
-        "com.google.dagger.hilt.android"
-    ) version "2.46.1" apply false
+    alias(
+        libs.plugins.parcelizePlugin
+    ) apply false
 
-    id(
-        "com.google.devtools.ksp"
-    ) version "1.8.22-1.0.11" apply false
+    alias(
+        libs.plugins.hiltPlugin
+    ) apply false
 
+    alias(
+        libs.plugins.kspPlugin
+    ) apply false
+
+    alias(
+        libs.plugins.kaptPlugin
+    ) apply false
 }
 
 tasks.register(

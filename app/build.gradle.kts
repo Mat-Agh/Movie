@@ -1,23 +1,24 @@
-@file:Suppress("UnstableApiUsage")
-
+@Suppress(
+    "DSL_SCOPE_VIOLATION"
+)
 plugins {
-    id(
-        "com.android.application"
+    alias(
+        libs.plugins.applicationPlugin
     )
-    id(
-        "org.jetbrains.kotlin.android"
+    alias(
+        libs.plugins.kotlinPlugin
     )
-    id(
-        "com.google.dagger.hilt.android"
+    alias(
+        libs.plugins.hiltPlugin
     )
-    id(
-        "kotlin-parcelize"
+    alias(
+        libs.plugins.parcelizePlugin
     )
-    id(
-        "com.google.devtools.ksp"
+    alias(
+        libs.plugins.kspPlugin
     )
-    id(
-        "kotlin-kapt"
+    alias(
+        libs.plugins.kaptPlugin
     )
 }
 
@@ -66,16 +67,20 @@ android {
 
         sourceSets {
             debug {
-                kotlin.srcDir("build/generated/ksp/debug/kotlin")
+                kotlin.srcDir(
+                    "build/generated/ksp/debug/kotlin"
+                )
             }
             release {
-                kotlin.srcDir("build/generated/ksp/release/kotlin")
+                kotlin.srcDir(
+                    "build/generated/ksp/release/kotlin"
+                )
             }
         }
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.8"
+        kotlinCompilerExtensionVersion = libs.versions.composeCompilerVersion.get()
     }
 }
 
@@ -85,310 +90,257 @@ kapt {
 
 dependencies {
     //region Core
-    val coreVersion = "1.12.0-alpha05"
-
     implementation(
-        "androidx.core:core-ktx:$coreVersion"
+        libs.core
     )
     //endregion Core
 
     //region Test
-    val testVersion = "1.5.2"
-    val testCoreVersion = "1.5.0"
-
     implementation(
-        "androidx.test:runner:$testVersion"
+        libs.test
     )
     androidTestImplementation(
-        "androidx.test:core-ktx:$testCoreVersion"
+        libs.testCore
     )
     //endregion Test
 
     //region JUnit
-    val jUnitVersion = "1.1.5"
-
     androidTestImplementation(
-        "androidx.test.ext:junit-ktx:$jUnitVersion"
+        libs.jUnit
     )
     //endregion JUnit
 
     // region Mockito
-    val mockitoVersion = "5.3.1"
-
     testImplementation(
-        "org.mockito:mockito-core:$mockitoVersion"
+        libs.mokito
     )
     //endregion Mockito
 
     //region Hilt
-    val hiltVersion = "2.46.1"
-
     implementation(
-        "com.google.dagger:hilt-android:$hiltVersion"
+        libs.hilt
     )
     kapt(
-        "com.google.dagger:hilt-android-compiler:$hiltVersion"
+        libs.hiltCompiler
     )
     //endregion Hilt
 
     //region Lifecycle
-    val lifecycleVersion = "2.6.1"
-
     implementation(
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+        libs.lifecycleViewmodel
     )
     implementation(
-        "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+        libs.lifecycleLivedata
     )
     implementation(
-        "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion"
+        libs.lifecycleCompose
     )
     implementation(
-        "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
+        libs.lifecycleViewmodelCompose
     )
     //endregion Lifecycle
 
     //region Retrofit
-    val retrofitVersion = "2.9.0"
-
     implementation(
-        "com.squareup.retrofit2:retrofit:$retrofitVersion"
+        libs.retrofit
     )
     implementation(
-        "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+        libs.retrofitMoshiConverter
     )
     //endregion Retrofit
 
     //region OkHttp
-    val okHttpVersion = "5.0.0-alpha.2"
-
     implementation(
-        "com.squareup.okhttp3:okhttp:$okHttpVersion"
+        libs.okHttp
     )
     implementation(
-        "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+        libs.okHttpInterceptor
     )
     //endregion OkHttp
 
     //region Moshi
-    val moshiVersion = "1.14.0"
-
     ksp(
-        "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+        libs.moshiKotlinCodegen
     )
     implementation(
-        "com.squareup.moshi:moshi:$moshiVersion"
+        libs.moshi
     )
     implementation(
-        "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+        libs.moshiKotlin
     )
     //endregion Moshi
 
     //region Gson
-    val gsonVersion = "2.10.1"
-
     implementation(
-        "com.google.code.gson:gson:$gsonVersion"
+        libs.gson
     )
     //endregion Moshi
 
     //region Timber
-    val timberVersion = "5.0.1"
-
     implementation(
-        "com.jakewharton.timber:timber:$timberVersion"
+        libs.timberVersion
     )
     //endregion Timber
 
     //region Chucker
-    val chuckerVersion = "3.5.2"
-
     debugImplementation(
-        "com.github.chuckerteam.chucker:library:$chuckerVersion"
+        libs.chucker
     )
     releaseImplementation(
-        "com.github.chuckerteam.chucker:library-no-op:$chuckerVersion"
+        libs.chuckerNoOp
     )
     //endregion Chucker
 
     //region Room
-    val roomVersion = "2.5.2"
-
     ksp(
-        "androidx.room:room-compiler:$roomVersion"
+        libs.roomCompiler
     )
     implementation(
-        "androidx.room:room-ktx:$roomVersion"
+        libs.room
     )
     testImplementation(
-        "androidx.room:room-testing:$roomVersion"
+        libs.roomTesting
     )
     implementation(
-        "androidx.room:room-paging:$roomVersion"
+        libs.roomPaging
     )
     //endregion Room
 
     //region Paging
-    val pagingVersion = "3.2.0-rc01"
-
     implementation(
-        "androidx.paging:paging-runtime-ktx:$pagingVersion"
+        libs.paging
     )
     //endregion Paging
 
     //region Activity for Compose
-    val activityVersion = "1.7.2"
-
     implementation(
-        "androidx.activity:activity-compose:$activityVersion"
+        libs.activityCompose
     )
     //endregion Activity for Compose
 
     //region Compose Navigation
-    val composeNavigation = "2.6.0"
-
     implementation(
-        "androidx.navigation:navigation-compose:$composeNavigation"
+        libs.composeNavigation
     )
     //endregion Compose Navigation
 
     //region Hilt Navigation Compose
-    val hiltNavigationComposeVersion = "1.1.0-alpha01"
-
     implementation(
-        "androidx.hilt:hilt-navigation-compose:$hiltNavigationComposeVersion"
+        libs.hiltNavigationCompose
     )
     //endregion Hilt Navigation Compose
 
     //region Paging for Compose
-    val pagingComposeVersion = "3.2.0-rc01"
-
     implementation(
-        "androidx.paging:paging-compose:$pagingComposeVersion"
+        libs.paginCompose
     )
     //endregion Paging for Compose
 
     //region Compose
-    val composeVersion = "1.6.0-alpha01"
-    val materialVersion = "1.2.0-alpha03"
-    val constraintLayoutVersion = "1.1.0-alpha10"
-
     implementation(
-        "androidx.compose.ui:ui:$composeVersion"
+        libs.composeUI
     )
     implementation(
-        "androidx.compose.foundation:foundation:$composeVersion"
+        libs.composeFoundation
     )
     implementation(
-        "androidx.compose.animation:animation:$composeVersion"
+        libs.composeAnimation
     )
     implementation(
-        "androidx.compose.ui:ui-tooling-preview:$composeVersion"
+        libs.composeUIToolingPreview
     )
     debugImplementation(
-        "androidx.compose.ui:ui-tooling:$composeVersion"
+        libs.composeUITooling
     )
     implementation(
-        "androidx.compose.material3:material3-window-size-class:$materialVersion"
+        libs.composeMaterial3WindowSize
     )
     implementation(
-        "androidx.compose.material:material-icons-extended:$composeVersion"
+        libs.composeMaterialIconsExtended
     )
     implementation(
-        "androidx.compose.runtime:runtime-livedata:$composeVersion"
+        libs.composeLiveData
     )
     implementation(
-        "androidx.compose.material3:material3:$materialVersion"
+        libs.composeMaterial3
     )
     debugImplementation(
-        "androidx.compose.ui:ui-test-manifest:$composeVersion"
+        libs.composeUITestManifest
     )
     androidTestImplementation(
-        "androidx.compose.ui:ui-test-junit4:$composeVersion"
+        libs.composeUITestJUnit
     )
     implementation(
-        "androidx.constraintlayout:constraintlayout-compose:$constraintLayoutVersion"
+        libs.composeConstraintLayout
     )
     //endregion Compose
 
     //region Accompanist
-    val accompanistVersion = "0.31.3-beta"
-
     implementation(
-        "com.google.accompanist:accompanist-systemuicontroller:$accompanistVersion"
+        libs.accompanistSystemUIController
     )
     implementation(
-        "com.google.accompanist:accompanist-placeholder:$accompanistVersion"
+        libs.accompanistPlaceHolder
     )
     implementation(
-        "com.google.accompanist:accompanist-flowlayout:$accompanistVersion"
+        libs.accompanistFlowLayout
     )
     implementation(
-        "com.google.accompanist:accompanist-swiperefresh:$accompanistVersion"
+        libs.accompanistSwipeRefresh
     )
     implementation(
-        "com.google.accompanist:accompanist-pager-indicators:$accompanistVersion"
+        libs.accompanistPagerIndicators
     )
     implementation(
-        "com.google.accompanist:accompanist-permissions:$accompanistVersion"
+        libs.accompanistPermissions
     )
     //endregion
 
     //region Palette
-    val paletteVersion = "1.0.0"
-
     implementation(
-        "androidx.palette:palette-ktx:$paletteVersion"
+        libs.palette
     )
     //endregion Palette
 
     //region Coil
-    val coilVersion = "2.4.0"
-
     implementation(
-        "io.coil-kt:coil-compose:$coilVersion"
+        libs.coil
     )
     //endregion Coil
 
     //region Lottie
-    val lottieVersion = "6.0.0"
-
     implementation(
-        "com.airbnb.android:lottie-compose:$lottieVersion"
+        libs.lottie
     )
     //endregion Lottie
 
     //region CameraX
-    val cameraXVersion = "1.3.0-beta01"
-
     implementation(
-        "androidx.camera:camera-core:$cameraXVersion"
+        libs.cameraCore
     )
     implementation(
-        "androidx.camera:camera-camera2:$cameraXVersion"
+        libs.camera2
     )
     implementation(
-        "androidx.camera:camera-lifecycle:$cameraXVersion"
+        libs.cameraLifecycle
     )
     implementation(
-        "androidx.camera:camera-video:$cameraXVersion"
+        libs.cameraVideo
     )
     implementation(
-        "androidx.camera:camera-view:$cameraXVersion"
+        libs.cameraView
     )
     implementation(
-        "androidx.camera:camera-mlkit-vision:$cameraXVersion"
+        libs.cameraMLKitVision
     )
     implementation(
-        "androidx.camera:camera-extensions:$cameraXVersion"
+        libs.cameraExtensions
     )
     //endregion CameraX
 
     //region Text Recognition
-    val textRecognitionVersion = "16.0.0"
-
     implementation(
-        "com.google.mlkit:text-recognition:$textRecognitionVersion"
+        libs.textRecognition
     )
     //endregion Text Recognition
 }
