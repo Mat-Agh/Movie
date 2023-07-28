@@ -61,7 +61,10 @@ fun AnimatedVisibilityScope.ShowScreen(
 
     val onShowClicked: (showId: Int) -> Unit = { showId: Int ->
         navHostController.navigate(
-            ShowDetailsScreen.route
+            ShowDetailsScreen.passArguments(
+                showId = showId,
+                startRoute = NavigationBarGraphScreen.ShowScreen.route
+            )
         )
     }
 
