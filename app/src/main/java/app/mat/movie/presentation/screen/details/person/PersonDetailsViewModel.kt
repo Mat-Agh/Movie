@@ -16,12 +16,19 @@ import app.mat.movie.domain.userCase.common.GetDeviceLanguageUseCase
 import app.mat.movie.domain.userCase.common.GetPersonDetailsUseCase
 import app.mat.movie.domain.userCase.common.GetPersonExternalIdsUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.PersonDetailsScreenData
-import app.mat.movie.presentation.navigation.screen.MainGraphScreen.*
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.view.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

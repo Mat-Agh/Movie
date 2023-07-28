@@ -2,9 +2,9 @@ package app.mat.movie.presentation.screen.scanner
 
 import android.graphics.Bitmap
 import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle

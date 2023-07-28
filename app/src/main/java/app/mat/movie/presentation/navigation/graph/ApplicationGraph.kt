@@ -7,7 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import app.mat.movie.common.util.EnterAnimation
-import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.*
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.BrowseMovieScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.BrowseShowsScreen
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.BrowseMovieScreenData
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.BrowseShowsScreenData
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.MovieDetailsScreenData
@@ -17,6 +18,16 @@ import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Compa
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.ReviewScreenData
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.SeasonsScreenData
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.ShowDetailsScreenData
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.DiscoverMovieScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.DiscoverShowsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.MovieDetailsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.PersonDetailsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.RelatedMoviesScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.RelatedShowsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.ReviewScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.ScannerScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.SeasonsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.ShowDetailsScreen
 import app.mat.movie.presentation.navigation.screen.MainGraphScreen
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.screen.browse.movie.BrowseMoviesScreen
