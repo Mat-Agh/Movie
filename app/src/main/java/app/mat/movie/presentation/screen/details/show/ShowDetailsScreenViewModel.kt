@@ -27,7 +27,6 @@ import app.mat.movie.domain.userCase.show.GetShowWatchProvidersUseCase
 import app.mat.movie.domain.userCase.show.LikeShowUseCase
 import app.mat.movie.domain.userCase.show.UnlikeShowUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.ShowDetailsScreenData
-import app.mat.movie.presentation.navigation.screen.MainGraphScreen.*
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.screen.details.movie.AssociatedContent
 import app.mat.movie.presentation.view.BaseViewModel
@@ -170,7 +169,7 @@ class ShowDetailsScreenViewModel @Inject constructor(
     ) { details, additionalInfo, associatedTvSeries, visualContent, error ->
         ShowDetailsScreenUIState(
             startRoute = startRoute,
-            tvShowDetails = details,
+            showDetails = details,
             additionalTvShowDetailsInfo = additionalInfo,
             associatedTvShow = associatedTvSeries,
             associatedContent = visualContent,

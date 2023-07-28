@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.emptyFlow
 @Stable
 data class ShowDetailsScreenUIState(
     val startRoute: String,
-    val tvShowDetails: ShowDetailsDto?,
+    val showDetails: ShowDetailsDto?,
     val additionalTvShowDetailsInfo: AdditionalShowDetailsInfo,
     val associatedTvShow: AssociatedTvShow,
     val associatedContent: AssociatedContent,
@@ -23,7 +23,7 @@ data class ShowDetailsScreenUIState(
             startRoute: String
         ): ShowDetailsScreenUIState = ShowDetailsScreenUIState(
             startRoute = startRoute,
-            tvShowDetails = null,
+            showDetails = null,
             additionalTvShowDetailsInfo = AdditionalShowDetailsInfo.default,
             associatedTvShow = AssociatedTvShow.default,
             associatedContent = AssociatedContent.default,

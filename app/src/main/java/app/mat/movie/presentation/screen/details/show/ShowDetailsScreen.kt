@@ -48,8 +48,8 @@ import app.mat.movie.presentation.component.section.SeasonSection
 import app.mat.movie.presentation.component.section.VideosSection
 import app.mat.movie.presentation.component.section.WatchProvidersSection
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.*
-import app.mat.movie.presentation.screen.details.component.MovplayTvShowDetailsInfoSection
-import app.mat.movie.presentation.screen.details.component.MovplayTvShowDetailsTopContent
+import app.mat.movie.presentation.screen.details.component.ShowDetailsInfoSection
+import app.mat.movie.presentation.screen.details.component.ShowDetailsTopContent
 import app.mat.movie.presentation.theme.spacing
 import kotlinx.coroutines.launch
 
@@ -125,7 +125,7 @@ fun AnimatedVisibilityScope.ShowDetailsScreen(
     }
 
     val onReviewsClicked: () -> Unit = {
-        val showId = uiState.tvShowDetails?.id
+        val showId = uiState.showDetails?.id
 
         if (showId != null) {
             navHostController.navigate(
@@ -139,7 +139,7 @@ fun AnimatedVisibilityScope.ShowDetailsScreen(
     }
 
     val onSeasonClicked = { seasonNumber: Int ->
-        val showId = uiState.tvShowDetails?.id
+        val showId = uiState.showDetails?.id
 
         if (showId != null) {
             navHostController.navigate(
@@ -153,7 +153,7 @@ fun AnimatedVisibilityScope.ShowDetailsScreen(
     }
 
     val onSimilarMoreClicked = {
-        val showId = uiState.tvShowDetails?.id
+        val showId = uiState.showDetails?.id
 
         if (showId != null) {
             navHostController.navigate(
@@ -167,7 +167,7 @@ fun AnimatedVisibilityScope.ShowDetailsScreen(
     }
 
     val onRecommendationsMoreClicked = {
-        val showId = uiState.tvShowDetails?.id
+        val showId = uiState.showDetails?.id
 
         if (showId != null) {
             navHostController.navigate(
@@ -294,7 +294,7 @@ fun TvShowDetailsScreenContent(
                     .onGloballyPositioned { coordinates ->
                         topSectionHeight = coordinates.size.height.toFloat()
                     },
-                presentable = uiState.tvShowDetails,
+                presentable = uiState.showDetails,
                 backdrops = uiState.associatedContent.backdrops,
                 scrollState = scrollState,
                 scrollValueLimit = topSectionScrollLimitValue
@@ -310,9 +310,9 @@ fun TvShowDetailsScreenContent(
                             MaterialTheme.spacing.small
                         )
                 ) {
-                    MovplayTvShowDetailsTopContent(
+                    ShowDetailsTopContent(
                         modifier = Modifier.fillMaxWidth(),
-                        tvShowDetails = uiState.tvShowDetails
+                        showDetails = uiState.showDetails
                     )
                 }
                 Spacer(
@@ -335,14 +335,14 @@ fun TvShowDetailsScreenContent(
                 }
             }
 
-            MovplayTvShowDetailsInfoSection(
+            ShowDetailsInfoSection(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
                         horizontal = MaterialTheme.spacing.medium
                     )
                     .animateContentSize(),
-                tvShowDetails = uiState.tvShowDetails,
+                showDetails = uiState.showDetails,
                 nextEpisodeDaysRemaining = uiState.additionalTvShowDetailsInfo.nextEpisodeRemainingDays,
                 imdbExternalId = imdbExternalId,
                 onShareClicked = onShareClicked
@@ -365,14 +365,14 @@ fun TvShowDetailsScreenContent(
 
             AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
-                visible = !uiState.tvShowDetails?.creators.isNullOrEmpty()
+                visible = !uiState.showDetails?.creators.isNullOrEmpty()
             ) {
                 MemberSection(
                     modifier = Modifier.fillMaxWidth(),
                     title = stringResource(
                         R.string.tv_series_details_creators
                     ),
-                    members = uiState.tvShowDetails?.creators ?: emptyList(),
+                    members = uiState.showDetails?.creators ?: emptyList(),
                     contentPadding = PaddingValues(
                         horizontal = MaterialTheme.spacing.medium
                     ),
@@ -382,7 +382,7 @@ fun TvShowDetailsScreenContent(
 
             AnimatedContentContainer(
                 modifier = Modifier.fillMaxWidth(),
-                visible = !uiState.tvShowDetails?.seasons.isNullOrEmpty()
+                visible = !uiState.showDetails?.seasons.isNullOrEmpty()
             ) {
                 SeasonSection(
                     modifier = Modifier
@@ -396,7 +396,7 @@ fun TvShowDetailsScreenContent(
                     title = stringResource(
                         R.string.tv_series_details_seasons
                     ),
-                    seasons = uiState.tvShowDetails?.seasons ?: emptyList(),
+                    seasons = uiState.showDetails?.seasons ?: emptyList(),
                     onSeasonClick = onSeasonClicked
                 )
             }
@@ -413,7 +413,7 @@ fun TvShowDetailsScreenContent(
                     showLoadingAtRefresh = false,
                     onMoreClick = onRecommendationsMoreClicked,
                     onPresentableClick = { tvShowId ->
-                        if (tvShowId != uiState.tvShowDetails?.id) {
+                        if (tvShowId != uiState.showDetails?.id) {
                             onTvShowClicked(
                                 tvShowId
                             )
@@ -437,7 +437,7 @@ fun TvShowDetailsScreenContent(
                     showLoadingAtRefresh = false,
                     onMoreClick = onSimilarMoreClicked,
                     onPresentableClick = { tvShowId ->
-                        if (tvShowId != uiState.tvShowDetails?.id) {
+                        if (tvShowId != uiState.showDetails?.id) {
                             onTvShowClicked(
                                 tvShowId
                             )
@@ -501,7 +501,7 @@ fun TvShowDetailsScreenContent(
 
                     isFavorite = uiState.additionalTvShowDetailsInfo.isFavorite,
                     onClick = {
-                        val details = uiState.tvShowDetails
+                        val details = uiState.showDetails
 
                         if (details != null) {
                             onFavoriteClicked(

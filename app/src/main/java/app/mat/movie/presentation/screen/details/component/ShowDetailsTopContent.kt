@@ -13,18 +13,22 @@ import app.mat.movie.presentation.component.text.LabeledText
 import app.mat.movie.presentation.theme.spacing
 
 @Composable
-fun MovplayTvShowDetailsTopContent(
-    tvShowDetails: ShowDetailsDto?,
+fun ShowDetailsTopContent(
+    showDetails: ShowDetailsDto?,
     modifier: Modifier = Modifier
 ) {
     Crossfade(
         modifier = modifier,
-        targetState = tvShowDetails,
+        targetState = showDetails,
         label = ""
     ) { details ->
         if (details != null) {
-            Column(verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)) {
-                tvShowDetails?.let { details ->
+            Column(
+                verticalArrangement = Arrangement.spacedBy(
+                    MaterialTheme.spacing.small
+                )
+            ) {
+                showDetails?.let { details ->
                     LabeledText(
                         label = stringResource(
                             R.string.tv_series_details_type

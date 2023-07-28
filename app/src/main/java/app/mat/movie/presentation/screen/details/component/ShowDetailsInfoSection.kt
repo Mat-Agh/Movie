@@ -34,20 +34,20 @@ import app.mat.movie.presentation.theme.spacing
     "UnrememberedMutableState"
 )
 @Composable
-fun MovplayTvShowDetailsInfoSection(
-    tvShowDetails: ShowDetailsDto?,
+fun ShowDetailsInfoSection(
+    showDetails: ShowDetailsDto?,
     nextEpisodeDaysRemaining: Long?,
     modifier: Modifier = Modifier,
     imdbExternalId: ExternalIdsResource.Imdb? = null,
     onShareClicked: (ShareDetailsModel) -> Unit = {}
 ) {
     val otherOriginalTitle: Boolean by derivedStateOf {
-        tvShowDetails?.run { !originalName.isNullOrEmpty() && title != originalName } ?: false
+        showDetails?.run { !originalName.isNullOrEmpty() && title != originalName } ?: false
     }
 
     Crossfade(
         modifier = modifier,
-        targetState = tvShowDetails,
+        targetState = showDetails,
         label = ""
     ) { details ->
         if (details != null) {
