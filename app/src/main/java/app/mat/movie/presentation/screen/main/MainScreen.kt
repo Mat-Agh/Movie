@@ -42,7 +42,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import timber.log.Timber
 
 @SuppressLint(
-    "UnrememberedMutableState"
+    "UnrememberedMutableState",
+    "RestrictedApi"
 )
 @Composable
 fun MainScreen(
