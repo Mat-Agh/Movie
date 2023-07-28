@@ -6,20 +6,25 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.zIndex
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -174,149 +179,156 @@ fun MoviesScreenContent(
         refreshAllPagingData
     )
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .pullRefresh(
                 pullRefreshState
-            ),
-        verticalArrangement = Arrangement.spacedBy(
-            MaterialTheme.spacing.medium
-        )
+            )
     ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(
+                    rememberScrollState()
+                ),
+            verticalArrangement = Arrangement.spacedBy(
+                MaterialTheme.spacing.medium
+            )
+        ) {
+            PresentableTopSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onGloballyPositioned { coordinates ->
+                        topSectionHeight = coordinates.size.height.toFloat()
+                    },
+                title = stringResource(
+                    R.string.now_playing_movies
+                ),
+                state = nowPlayingLazyItems,
+                scrollState = scrollState,
+                scrollValueLimit = topSectionScrollLimitValue,
+                onPresentableClick = onMovieClicked,
+                onMoreClick = {
+                    onBrowseMoviesClicked(
+                        MovieType.NowPlaying
+                    )
+                }
+            )
+
+            PresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(
+                    R.string.explore_movies
+                ),
+                state = discoverLazyItems,
+                onPresentableClick = onMovieClicked,
+                onMoreClick = onDiscoverMoviesClicked
+            )
+
+            PresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(
+                    R.string.upcoming_movies
+                ),
+                state = upcomingLazyItems,
+                onPresentableClick = onMovieClicked,
+                onMoreClick = {
+                    onBrowseMoviesClicked(
+                        MovieType.Upcoming
+                    )
+                }
+            )
+
+            PresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(
+                    R.string.trending_movies
+                ),
+                state = trendingLazyItems,
+                onPresentableClick = onMovieClicked,
+                onMoreClick = {
+                    onBrowseMoviesClicked(
+                        MovieType.Trending
+                    )
+                }
+            )
+
+            PresentableSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .animateContentSize(),
+                title = stringResource(
+                    R.string.top_rated_movies
+                ),
+                state = topRatedLazyItems,
+                onPresentableClick = onMovieClicked,
+                onMoreClick = {
+                    onBrowseMoviesClicked(
+                        MovieType.TopRated
+                    )
+                }
+            )
+
+            if (favoritesLazyItems.isNotEmpty()) {
+                PresentableSection(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateContentSize(),
+                    title = stringResource(
+                        R.string.favourite_movies
+                    ),
+                    state = favoritesLazyItems,
+                    onPresentableClick = onMovieClicked,
+                    onMoreClick = {
+                        onBrowseMoviesClicked(
+                            MovieType.Favorite
+                        )
+                    }
+                )
+            }
+
+            if (recentlyBrowsedLazyItems.isNotEmpty()) {
+                PresentableSection(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateContentSize(),
+                    title = stringResource(
+                        R.string.recently_browsed_movies
+                    ),
+                    state = recentlyBrowsedLazyItems,
+                    onPresentableClick = onMovieClicked,
+                    onMoreClick = {
+                        onBrowseMoviesClicked(
+                            MovieType.RecentlyBrowsed
+                        )
+                    }
+                )
+            }
+
+            Spacer(
+                modifier = Modifier.height(
+                    MaterialTheme.spacing.medium
+                )
+            )
+        }
+
         PullRefreshIndicator(
             modifier = Modifier
-                .statusBarsPadding()
-                .padding(
-                    top = MaterialTheme.spacing.large
+                .align(
+                    Alignment.TopCenter,
                 ),
             refreshing = isRefreshing,
             state = pullRefreshState,
             scale = true,
             backgroundColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.primary
-        )
-
-        PresentableTopSection(
-            modifier = Modifier
-                .fillMaxWidth()
-                .onGloballyPositioned { coordinates ->
-                    topSectionHeight = coordinates.size.height.toFloat()
-                },
-            title = stringResource(
-                R.string.now_playing_movies
-            ),
-            state = nowPlayingLazyItems,
-            scrollState = scrollState,
-            scrollValueLimit = topSectionScrollLimitValue,
-            onPresentableClick = onMovieClicked,
-            onMoreClick = {
-                onBrowseMoviesClicked(
-                    MovieType.NowPlaying
-                )
-            }
-        )
-
-        PresentableSection(
-            modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize(),
-            title = stringResource(
-                R.string.explore_movies
-            ),
-            state = discoverLazyItems,
-            onPresentableClick = onMovieClicked,
-            onMoreClick = onDiscoverMoviesClicked
-        )
-
-        PresentableSection(
-            modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize(),
-            title = stringResource(
-                R.string.upcoming_movies
-            ),
-            state = upcomingLazyItems,
-            onPresentableClick = onMovieClicked,
-            onMoreClick = {
-                onBrowseMoviesClicked(
-                    MovieType.Upcoming
-                )
-            }
-        )
-
-        PresentableSection(
-            modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize(),
-            title = stringResource(
-                R.string.trending_movies
-            ),
-            state = trendingLazyItems,
-            onPresentableClick = onMovieClicked,
-            onMoreClick = {
-                onBrowseMoviesClicked(
-                    MovieType.Trending
-                )
-            }
-        )
-
-        PresentableSection(
-            modifier = Modifier
-                .fillMaxWidth()
-                .animateContentSize(),
-            title = stringResource(
-                R.string.top_rated_movies
-            ),
-            state = topRatedLazyItems,
-            onPresentableClick = onMovieClicked,
-            onMoreClick = {
-                onBrowseMoviesClicked(
-                    MovieType.TopRated
-                )
-            }
-        )
-
-        if (favoritesLazyItems.isNotEmpty()) {
-            PresentableSection(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize(),
-                title = stringResource(
-                    R.string.favourite_movies
-                ),
-                state = favoritesLazyItems,
-                onPresentableClick = onMovieClicked,
-                onMoreClick = {
-                    onBrowseMoviesClicked(
-                        MovieType.Favorite
-                    )
-                }
-            )
-        }
-
-        if (recentlyBrowsedLazyItems.isNotEmpty()) {
-            PresentableSection(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .animateContentSize(),
-                title = stringResource(
-                    R.string.recently_browsed_movies
-                ),
-                state = recentlyBrowsedLazyItems,
-                onPresentableClick = onMovieClicked,
-                onMoreClick = {
-                    onBrowseMoviesClicked(
-                        MovieType.RecentlyBrowsed
-                    )
-                }
-            )
-        }
-
-        Spacer(
-            modifier = Modifier.height(
-                MaterialTheme.spacing.medium
-            )
         )
     }
 }

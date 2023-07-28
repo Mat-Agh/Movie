@@ -76,7 +76,7 @@ class ShowScreenViewModel @Inject constructor(
     )
     val uiState: StateFlow<TvShowScreenUIState> = tvShowsState.mapLatest { tvShowsState ->
         TvShowScreenUIState(
-            tvShowsState = tvShowsState,
+            showsState = tvShowsState,
             favorites = getFavoritesShowsUseCase(),
             recentlyBrowsed = getRecentlyBrowsedShowsUseCase()
         )

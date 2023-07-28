@@ -50,7 +50,7 @@ import kotlin.math.absoluteValue
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint(
-    "UnrememberedMutableState"
+    "UnrememberedMutableState", "UnusedBoxWithConstraintsScope"
 )
 @Composable
 fun PresentableTopSection(

@@ -5,12 +5,15 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.pullrefresh.PullRefreshIndicator
 import androidx.compose.material.pullrefresh.pullRefresh
 import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
@@ -76,7 +79,7 @@ fun AnimatedVisibilityScope.ShowScreen(
         )
     }
 
-    TvShowsScreenContent(
+    ShowsScreenContent(
         uiState = uiState,
         scrollState = scrollState,
         onTvShowClicked = onShowClicked,
@@ -90,7 +93,7 @@ fun AnimatedVisibilityScope.ShowScreen(
     "UnrememberedMutableState"
 )
 @Composable
-fun TvShowsScreenContent(
+fun ShowsScreenContent(
     uiState: TvShowScreenUIState,
     scrollState: ScrollState,
     onTvShowClicked: (tvShowId: Int) -> Unit,
@@ -99,11 +102,11 @@ fun TvShowsScreenContent(
 ) {
     val density = LocalDensity.current
 
-    val topRatedLazyItems = uiState.tvShowsState.topRated.collectAsLazyPagingItems()
-    val discoverLazyItems = uiState.tvShowsState.discover.collectAsLazyPagingItems()
-    val onTheAirLazyItems = uiState.tvShowsState.onTheAir.collectAsLazyPagingItems()
-    val trendingLazyItems = uiState.tvShowsState.trending.collectAsLazyPagingItems()
-    val airingTodayLazyItems = uiState.tvShowsState.airingToday.collectAsLazyPagingItems()
+    val topRatedLazyItems = uiState.showsState.topRated.collectAsLazyPagingItems()
+    val discoverLazyItems = uiState.showsState.discover.collectAsLazyPagingItems()
+    val onTheAirLazyItems = uiState.showsState.onTheAir.collectAsLazyPagingItems()
+    val trendingLazyItems = uiState.showsState.trending.collectAsLazyPagingItems()
+    val airingTodayLazyItems = uiState.showsState.airingToday.collectAsLazyPagingItems()
     val favoritesLazyItems = uiState.favorites.collectAsLazyPagingItems()
     val recentlyBrowsedLazyItems = uiState.recentlyBrowsed.collectAsLazyPagingItems()
 
@@ -144,133 +147,139 @@ fun TvShowsScreenContent(
         refreshAllPagingData
     )
 
-
-
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .pullRefresh(
                 pullRefreshState
-            ),
-        verticalArrangement = Arrangement.spacedBy(
-            MaterialTheme.spacing.medium
-        )
+            )
     ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(
+                    rememberScrollState()
+                ),
+            verticalArrangement = Arrangement.spacedBy(
+                MaterialTheme.spacing.medium
+            )
+        ) {
+            PresentableTopSection(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .onGloballyPositioned { coordinates ->
+                        topSectionHeight = coordinates.size.height.toFloat()
+                    },
+                title = stringResource(
+                    R.string.now_airing_tv_series
+                ),
+                state = onTheAirLazyItems,
+                scrollState = scrollState,
+                scrollValueLimit = topSectionScrollLimitValue,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(
+                        ShowType.OnTheAir
+                    )
+                }
+            )
+
+            PresentableSection(
+                title = stringResource(
+                    R.string.explore_tv_series
+                ),
+                state = discoverLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = onDiscoverTvShowClicked
+            )
+
+            PresentableSection(
+                title = stringResource(
+                    R.string.top_rated_tv_series
+                ),
+                state = topRatedLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(
+                        ShowType.TopRated
+                    )
+                }
+            )
+
+            PresentableSection(
+                title = stringResource(
+                    R.string.trending_tv_series
+                ),
+                state = trendingLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(
+                        ShowType.Trending
+                    )
+                }
+            )
+
+            PresentableSection(
+                title = stringResource(
+                    R.string.today_airing_tv_series
+                ),
+                state = airingTodayLazyItems,
+                onPresentableClick = onTvShowClicked,
+                onMoreClick = {
+                    onBrowseTvShowClicked(
+                        ShowType.AiringToday
+                    )
+                }
+            )
+
+            if (favoritesLazyItems.isNotEmpty()) {
+                PresentableSection(
+                    title = stringResource(
+                        R.string.favourites_tv_series
+                    ),
+                    state = favoritesLazyItems,
+                    onPresentableClick = onTvShowClicked,
+                    onMoreClick = {
+                        onBrowseTvShowClicked(
+                            ShowType.Favorite
+                        )
+                    }
+                )
+            }
+
+            if (recentlyBrowsedLazyItems.isNotEmpty()) {
+                PresentableSection(
+                    title = stringResource(
+                        R.string.recently_browsed_tv_series
+                    ),
+                    state = recentlyBrowsedLazyItems,
+                    onPresentableClick = onTvShowClicked,
+                    onMoreClick = {
+                        onBrowseTvShowClicked(
+                            ShowType.RecentlyBrowsed
+                        )
+                    }
+                )
+            }
+
+            Spacer(
+                modifier = Modifier.height(
+                    MaterialTheme.spacing.medium
+                )
+            )
+        }
+
         PullRefreshIndicator(
             modifier = Modifier
                 .statusBarsPadding()
-                .padding(
-                    top = MaterialTheme.spacing.large
+                .align(
+                    Alignment.TopCenter
                 ),
             refreshing = isRefreshing,
             state = pullRefreshState,
             scale = true,
             backgroundColor = MaterialTheme.colorScheme.surface,
             contentColor = MaterialTheme.colorScheme.primary
-        )
-
-        PresentableTopSection(
-            modifier = Modifier
-                .fillMaxWidth()
-                .onGloballyPositioned { coordinates ->
-                    topSectionHeight = coordinates.size.height.toFloat()
-                },
-            title = stringResource(
-                R.string.now_airing_tv_series
-            ),
-            state = onTheAirLazyItems,
-            scrollState = scrollState,
-            scrollValueLimit = topSectionScrollLimitValue,
-            onPresentableClick = onTvShowClicked,
-            onMoreClick = {
-                onBrowseTvShowClicked(
-                    ShowType.OnTheAir
-                )
-            }
-        )
-
-        PresentableSection(
-            title = stringResource(
-                R.string.explore_tv_series
-            ),
-            state = discoverLazyItems,
-            onPresentableClick = onTvShowClicked,
-            onMoreClick = onDiscoverTvShowClicked
-        )
-
-        PresentableSection(
-            title = stringResource(
-                R.string.top_rated_tv_series
-            ),
-            state = topRatedLazyItems,
-            onPresentableClick = onTvShowClicked,
-            onMoreClick = {
-                onBrowseTvShowClicked(
-                    ShowType.TopRated
-                )
-            }
-        )
-
-        PresentableSection(
-            title = stringResource(
-                R.string.trending_tv_series
-            ),
-            state = trendingLazyItems,
-            onPresentableClick = onTvShowClicked,
-            onMoreClick = {
-                onBrowseTvShowClicked(
-                    ShowType.Trending
-                )
-            }
-        )
-
-        PresentableSection(
-            title = stringResource(
-                R.string.today_airing_tv_series
-            ),
-            state = airingTodayLazyItems,
-            onPresentableClick = onTvShowClicked,
-            onMoreClick = {
-                onBrowseTvShowClicked(
-                    ShowType.AiringToday
-                )
-            }
-        )
-
-        if (favoritesLazyItems.isNotEmpty()) {
-            PresentableSection(
-                title = stringResource(
-                    R.string.favourites_tv_series
-                ),
-                state = favoritesLazyItems,
-                onPresentableClick = onTvShowClicked,
-                onMoreClick = {
-                    onBrowseTvShowClicked(
-                        ShowType.Favorite
-                    )
-                }
-            )
-        }
-
-        if (recentlyBrowsedLazyItems.isNotEmpty()) {
-            PresentableSection(
-                title = stringResource(
-                    R.string.recently_browsed_tv_series
-                ),
-                state = recentlyBrowsedLazyItems,
-                onPresentableClick = onTvShowClicked,
-                onMoreClick = {
-                    onBrowseTvShowClicked(
-                        ShowType.RecentlyBrowsed
-                    )
-                }
-            )
-        }
-
-        Spacer(
-            modifier = Modifier.height(
-                MaterialTheme.spacing.medium
-            )
         )
     }
 }

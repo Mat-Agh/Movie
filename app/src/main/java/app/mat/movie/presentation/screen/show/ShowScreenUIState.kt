@@ -11,13 +11,13 @@ import kotlinx.coroutines.flow.emptyFlow
 
 @Stable
 data class TvShowScreenUIState(
-    val tvShowsState: TvShowsState,
+    val showsState: TvShowsState,
     val favorites: Flow<PagingData<ShowFavoriteEntity>>,
     val recentlyBrowsed: Flow<PagingData<RecentlyBrowsedShowEntity>>
 ) {
     companion object {
         val default: TvShowScreenUIState = TvShowScreenUIState(
-            tvShowsState = TvShowsState.default,
+            showsState = TvShowsState.default,
             favorites = emptyFlow(),
             recentlyBrowsed = emptyFlow()
         )
