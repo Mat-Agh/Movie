@@ -1,5 +1,6 @@
 package app.mat.movie.presentation.screen.main
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -19,7 +20,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -31,18 +31,18 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import app.mat.movie.common.type.SnackBarEvent
-import app.mat.movie.common.util.LocalImageUrlParser
 import app.mat.movie.presentation.component.common.NavigationBar
 import app.mat.movie.presentation.navigation.graph.NavigationBarGraph
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.theme.MovieAppTheme
 import app.mat.movie.presentation.theme.spacing
+import app.mat.movie.presentation.view.LocalImageUrlParser
 import app.mat.movie.presentation.view.MainViewModel
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import timber.log.Timber
 
-@OptIn(
-    ExperimentalComposeUiApi::class
+@SuppressLint(
+    "UnrememberedMutableState"
 )
 @Composable
 fun MainScreen(

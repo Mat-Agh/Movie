@@ -1,5 +1,6 @@
 package app.mat.movie.common.util
 
+import android.annotation.SuppressLint
 import android.util.Size
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -11,6 +12,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import app.mat.movie.common.type.ImageType
 import app.mat.movie.common.type.MatchingStrategyType
+import app.mat.movie.presentation.view.LocalImageUrlParser
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -42,6 +44,7 @@ inline fun rememberTmdbImagePainter(
     )
 }
 
+@SuppressLint("UnusedBoxWithConstraintsScope")
 @Composable
 fun TmdbImage(
     imagePath: String?,

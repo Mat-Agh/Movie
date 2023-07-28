@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.camera.core.ImageProxy
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.core.content.ContextCompat
 import java.nio.ByteBuffer
 import kotlin.coroutines.resume
@@ -65,5 +64,3 @@ suspend fun Context.getCameraProvider(): ProcessCameraProvider =
             }, ContextCompat.getMainExecutor(this))
         }
     }
-
-val LocalImageUrlParser = staticCompositionLocalOf<ImageUrlParser?> { null }

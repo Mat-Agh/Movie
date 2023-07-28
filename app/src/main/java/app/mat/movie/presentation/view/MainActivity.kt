@@ -3,11 +3,15 @@ package app.mat.movie.presentation.view
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import app.mat.movie.common.util.ImageUrlParser
 import app.mat.movie.presentation.navigation.graph.MainGraph
 import dagger.hilt.android.AndroidEntryPoint
+
+val LocalImageUrlParser = staticCompositionLocalOf<ImageUrlParser?> { null }
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {

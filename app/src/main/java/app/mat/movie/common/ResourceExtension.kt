@@ -41,7 +41,7 @@ fun <T> Resource<T>.onException(
 inline fun <T> Call<T>.request(
     crossinline onResult: (response: Resource<T>) -> Unit
 ) {
-    val queueObject = object : Callback<T> {
+    enqueue(object : Callback<T> {
         override fun onResponse(
             call: Call<T>,
             response: Response<T>
@@ -94,7 +94,7 @@ inline fun <T> Call<T>.request(
                 Resource.Exception(throwable)
             )
         }
-    }
+    })
 }
 
 suspend fun <T : Any> Call<T>.awaitApiResponse(): Resource<T> {

@@ -28,7 +28,9 @@ class MainViewModel @Inject constructor(
     //region Variables
     private val connectionStatus = networkStatusTracker.connectionStatus
 
-    @OptIn(ExperimentalCoroutinesApi::class)
+    @OptIn(
+        ExperimentalCoroutinesApi::class
+    )
     val networkSnackBarEvent: StateFlow<SnackBarEvent?> = connectionStatus.mapLatest { status ->
         when (status) {
             NetworkStatus.Connected -> SnackBarEvent.NetworkConnected
@@ -54,9 +56,7 @@ class MainViewModel @Inject constructor(
     //endregion Variables
 
     //region Public Methods
-    fun updateLocale() {
-        configRepository.updateLocale()
-    }
+    fun updateLocale() = configRepository.updateLocale()
 
     fun onSameRouteSelected(
         route: String

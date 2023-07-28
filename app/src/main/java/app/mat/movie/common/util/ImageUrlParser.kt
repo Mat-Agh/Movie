@@ -50,7 +50,11 @@ class ImageUrlParser(
         }
 
         if (preferredSize == null) {
-            return createSecureUrl(secureBaseUrl, Dimension.Original, path)
+            return createSecureUrl(
+                secureBaseUrl,
+                Dimension.Original,
+                path
+            )
         }
 
         val preferredDimension = when (strategy) {
@@ -108,13 +112,28 @@ class ImageUrlParser(
     ): List<Dimension> {
         return codes.mapNotNull { code ->
             when {
-                code.contains(Dimension.Original.code) -> Dimension.Original
-                code.contains(Dimension.Width.code) -> getValueFromCode(code)?.let { value ->
-                    Dimension.Width(value)
+                code.contains(
+                    Dimension.Original.code
+                ) -> Dimension.Original
+
+                code.contains(
+                    Dimension.Width.code
+                ) -> getValueFromCode(
+                    code
+                )?.let { value ->
+                    Dimension.Width(
+                        value
+                    )
                 }
 
-                code.contains(Dimension.Height.code) -> getValueFromCode(code)?.let { value ->
-                    Dimension.Height(value)
+                code.contains(
+                    Dimension.Height.code
+                ) -> getValueFromCode(
+                    code
+                )?.let { value ->
+                    Dimension.Height(
+                        value
+                    )
                 }
 
                 else -> null
