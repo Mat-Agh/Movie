@@ -1,5 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+rootProject.name = "Movie"
+
+include(
+    ":app"
+)
+
 pluginManagement {
     repositories {
         google()
@@ -18,8 +24,3 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
-rootProject.name = "Movie"
-include(
-    ":app"
-)
