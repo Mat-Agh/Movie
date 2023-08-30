@@ -5,7 +5,6 @@ buildscript {
     }
 }
 
-
 plugins {
     alias(
         libs.plugins.applicationPlugin
