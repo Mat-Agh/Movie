@@ -1,4 +1,4 @@
-package app.mat.movie.domain.repository
+package app.mat.movie.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig

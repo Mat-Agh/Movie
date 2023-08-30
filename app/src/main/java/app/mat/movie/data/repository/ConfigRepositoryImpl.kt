@@ -1,11 +1,10 @@
-package app.mat.movie.domain.repository
+package app.mat.movie.data.repository
 
 import app.mat.movie.common.util.ImageUrlParser
 import app.mat.movie.data.remote.dto.common.DeviceLanguageDto
 import app.mat.movie.data.remote.dto.common.GenreDto
 import app.mat.movie.data.remote.dto.common.ProviderSourceDto
-import app.mat.movie.data.repository.ConfigRepository
-import app.mat.movie.domain.repository.configuration.DataSourceConfiguration
+import app.mat.movie.domain.configuration.DataSourceConfiguration
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

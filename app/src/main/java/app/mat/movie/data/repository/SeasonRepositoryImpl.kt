@@ -1,4 +1,4 @@
-package app.mat.movie.domain.repository
+package app.mat.movie.data.repository
 
 import app.mat.movie.data.remote.api.show.ShowApiHelper
 import app.mat.movie.data.remote.dto.common.AggregatedCreditsDto

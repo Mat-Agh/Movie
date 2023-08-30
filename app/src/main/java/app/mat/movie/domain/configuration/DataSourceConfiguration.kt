@@ -1,4 +1,4 @@
-package app.mat.movie.domain.repository.configuration
+package app.mat.movie.domain.configuration
 
 import android.content.Context
 import android.content.Intent

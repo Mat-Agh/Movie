@@ -1,4 +1,4 @@
-package app.mat.movie.domain.repository
+package app.mat.movie.data.repository
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -9,7 +9,6 @@ import app.mat.movie.data.local.entity.movie.MovieFavoriteEntity
 import app.mat.movie.data.local.entity.show.ShowFavoriteEntity
 import app.mat.movie.data.remote.dto.movie.MovieDetailsDto
 import app.mat.movie.data.remote.dto.show.ShowDetailsDto
-import app.mat.movie.data.repository.FavoritesRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
