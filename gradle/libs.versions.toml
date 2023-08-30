@@ -1,7 +1,6 @@
 [versions]
 
 # Gradle Configuration
-applicationName = "Movie"
 packageName = "app.mat.movie"
 versionCode = "1"
 versionName = "0.1"
