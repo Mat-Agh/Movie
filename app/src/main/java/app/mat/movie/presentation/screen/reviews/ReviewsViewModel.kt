@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import app.mat.movie.common.util.toJsonObject
 import app.mat.movie.data.remote.type.MediaType
-import app.mat.movie.domain.userCase.common.GetMediaTypeReviewsUseCase
+import app.mat.movie.domain.useCase.common.GetMediaTypeReviewsUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.view.BaseViewModel

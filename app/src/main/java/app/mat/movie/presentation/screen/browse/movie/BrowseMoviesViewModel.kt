@@ -7,10 +7,10 @@ import androidx.paging.cachedIn
 import app.mat.movie.common.type.MovieType
 import app.mat.movie.common.util.toJsonObject
 import app.mat.movie.data.remote.dto.common.DeviceLanguageDto
-import app.mat.movie.domain.userCase.common.GetDeviceLanguageUseCase
-import app.mat.movie.domain.userCase.movie.ClearRecentlyBrowsedMoviesUseCase
-import app.mat.movie.domain.userCase.movie.GetFavoritesMovieCountUseCase
-import app.mat.movie.domain.userCase.movie.GetMoviesOfTypeUseCase
+import app.mat.movie.domain.useCase.common.GetDeviceLanguageUseCase
+import app.mat.movie.domain.useCase.movie.ClearRecentlyBrowsedMoviesUseCase
+import app.mat.movie.domain.useCase.movie.GetFavoritesMovieCountUseCase
+import app.mat.movie.domain.useCase.movie.GetMoviesOfTypeUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow

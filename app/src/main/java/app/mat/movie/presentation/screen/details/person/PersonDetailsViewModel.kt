@@ -11,10 +11,10 @@ import app.mat.movie.data.remote.dto.common.ExternalIdsDto
 import app.mat.movie.data.remote.dto.common.PersonDetailsDto
 import app.mat.movie.data.remote.type.ExternalContentType
 import app.mat.movie.data.remote.type.ExternalIdsResource
-import app.mat.movie.domain.userCase.common.GetCombinedCreditsUseCase
-import app.mat.movie.domain.userCase.common.GetDeviceLanguageUseCase
-import app.mat.movie.domain.userCase.common.GetPersonDetailsUseCase
-import app.mat.movie.domain.userCase.common.GetPersonExternalIdsUseCase
+import app.mat.movie.domain.useCase.common.GetCombinedCreditsUseCase
+import app.mat.movie.domain.useCase.common.GetDeviceLanguageUseCase
+import app.mat.movie.domain.useCase.common.GetPersonDetailsUseCase
+import app.mat.movie.domain.useCase.common.GetPersonExternalIdsUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.PersonDetailsScreenData
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.view.BaseViewModel

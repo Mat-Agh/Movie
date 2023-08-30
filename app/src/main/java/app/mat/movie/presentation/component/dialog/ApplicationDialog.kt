@@ -40,7 +40,7 @@ fun ApplicationDialog(
                     text = AnnotatedString(
                         text = text
                     ),
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
         },

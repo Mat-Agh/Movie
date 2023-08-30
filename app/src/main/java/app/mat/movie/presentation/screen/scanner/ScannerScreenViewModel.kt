@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import androidx.lifecycle.viewModelScope
 import app.mat.movie.common.util.Roi
 import app.mat.movie.common.util.TextRecognitionHelper
-import app.mat.movie.domain.userCase.common.ScanBitmapForTextUseCase
+import app.mat.movie.domain.useCase.common.ScanBitmapForTextUseCase
 import app.mat.movie.presentation.view.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

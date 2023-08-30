@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
 import app.mat.movie.common.type.FavoriteType
-import app.mat.movie.domain.userCase.common.GetFavoritesUseCase
+import app.mat.movie.domain.useCase.common.GetFavoritesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow

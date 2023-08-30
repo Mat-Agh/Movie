@@ -6,8 +6,8 @@ import androidx.paging.cachedIn
 import app.mat.movie.common.type.RelationType
 import app.mat.movie.common.util.toJsonObject
 import app.mat.movie.data.remote.dto.common.DeviceLanguageDto
-import app.mat.movie.domain.userCase.common.GetDeviceLanguageUseCase
-import app.mat.movie.domain.userCase.movie.GetRelatedMoviesOfTypeUseCase
+import app.mat.movie.domain.useCase.common.GetDeviceLanguageUseCase
+import app.mat.movie.domain.useCase.movie.GetRelatedMoviesOfTypeUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion.RelatedMoviesScreenData
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.view.BaseViewModel

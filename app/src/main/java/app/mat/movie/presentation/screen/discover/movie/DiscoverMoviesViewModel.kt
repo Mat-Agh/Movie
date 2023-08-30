@@ -6,10 +6,10 @@ import androidx.paging.cachedIn
 import app.mat.movie.common.type.SortOrder
 import app.mat.movie.common.type.SortType
 import app.mat.movie.data.remote.dto.common.DeviceLanguageDto
-import app.mat.movie.domain.userCase.common.GetDeviceLanguageUseCase
-import app.mat.movie.domain.userCase.movie.GetAllMoviesWatchProvidersUseCase
-import app.mat.movie.domain.userCase.movie.GetDiscoverMoviesUseCase
-import app.mat.movie.domain.userCase.movie.GetMovieGenresUseCase
+import app.mat.movie.domain.useCase.common.GetDeviceLanguageUseCase
+import app.mat.movie.domain.useCase.movie.GetAllMoviesWatchProvidersUseCase
+import app.mat.movie.domain.useCase.movie.GetDiscoverMoviesUseCase
+import app.mat.movie.domain.useCase.movie.GetMovieGenresUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

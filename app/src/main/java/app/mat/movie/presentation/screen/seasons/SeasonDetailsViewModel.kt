@@ -10,11 +10,11 @@ import app.mat.movie.data.remote.dto.common.DeviceLanguageDto
 import app.mat.movie.data.remote.dto.common.ImageDto
 import app.mat.movie.data.remote.dto.common.SeasonDetailsDto
 import app.mat.movie.data.remote.dto.common.VideoDto
-import app.mat.movie.domain.userCase.common.GetDeviceLanguageUseCase
-import app.mat.movie.domain.userCase.common.GetEpisodeStillsUseCase
-import app.mat.movie.domain.userCase.show.GetSeasonCreditsUseCase
-import app.mat.movie.domain.userCase.show.GetSeasonDetailsUseCase
-import app.mat.movie.domain.userCase.show.GetSeasonsVideosUseCase
+import app.mat.movie.domain.useCase.common.GetDeviceLanguageUseCase
+import app.mat.movie.domain.useCase.common.GetEpisodeStillsUseCase
+import app.mat.movie.domain.useCase.show.GetSeasonCreditsUseCase
+import app.mat.movie.domain.useCase.show.GetSeasonDetailsUseCase
+import app.mat.movie.domain.useCase.show.GetSeasonsVideosUseCase
 import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.Companion
 import app.mat.movie.presentation.navigation.screen.NavigationBarGraphScreen
 import app.mat.movie.presentation.view.BaseViewModel

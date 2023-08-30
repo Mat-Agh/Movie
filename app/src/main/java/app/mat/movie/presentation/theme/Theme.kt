@@ -54,7 +54,8 @@ fun MovieAppTheme(
         SideEffect {
             currentWindow.statusBarColor = colorScheme.primary.toArgb()
             WindowCompat.getInsetsController(
-                currentWindow, view
+                currentWindow,
+                view
             ).isAppearanceLightStatusBars = darkTheme
         }
     }
