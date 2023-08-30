@@ -1,15 +1,16 @@
 [versions]
 
 # Gradle Configuration
+applicationName = "Movie"
 packageName = "app.mat.movie"
 versionCode = "1"
-versionName = "1.0"
+versionName = "0.1"
 minSdk = "26"
 maxSdk = "34"
 jvmVersion = "17"
 
 # Libraries Versions
-androidGradleVersion = "8.2.0-alpha16"
+androidGradleVersion = "8.2.0-alpha15"
 kotlinVersion = "1.9.0"
 kspVersion = "1.9.0-1.0.12"
 coreVersion = "1.12.0-rc01"
