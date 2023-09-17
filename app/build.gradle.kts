@@ -218,7 +218,7 @@ dependencies {
 
     //region Paging for Compose
     implementation(
-        libs.paginCompose
+        libs.pagingCompose
     )
     //endregion Paging for Compose
 

@@ -30,7 +30,6 @@ pagingVersion = "3.2.1"
 activityVersion = "1.7.2"
 composeNavigationVersion = "2.7.2"
 hiltNavigationComposeVersion = "1.1.0-alpha01"
-pagingComposeVersion = "3.2.1"
 composeVersion = "1.6.0-alpha05"
 composeCompilerVersion = "1.5.3"
 materialVersion = "1.2.0-alpha07"
@@ -71,7 +70,7 @@ roomCompiler = { group = "androidx.room", name = "room-compiler", version.ref = 
 roomTesting = { group = "androidx.room", name = "room-testing", version.ref = "roomVersion" }
 roomPaging = { group = "androidx.room", name = "room-paging", version.ref = "roomVersion" }
 paging = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "pagingVersion" }
-paginCompose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingComposeVersion" }
+pagingCompose = { group = "androidx.paging", name = "paging-compose", version.ref = "pagingVersion" }
 activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityVersion" }
 composeNavigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigationVersion" }
 hiltNavigationCompose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hiltNavigationComposeVersion" }
