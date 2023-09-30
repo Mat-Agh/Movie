@@ -1,4 +1,4 @@
-package app.mat.movie.core
+package app.mat.movie.core.application
 
 import android.app.Application
 import app.mat.movie.core.initializer.ApplicationInitializerImpl
