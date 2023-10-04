@@ -6,11 +6,27 @@ import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.windowInsetsBottomHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -48,7 +64,10 @@ import app.mat.movie.presentation.component.section.PresentableSection
 import app.mat.movie.presentation.component.section.ReviewSection
 import app.mat.movie.presentation.component.section.VideosSection
 import app.mat.movie.presentation.component.section.WatchProvidersSection
-import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.*
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.MovieDetailsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.PersonDetailsScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.RelatedMoviesScreen
+import app.mat.movie.presentation.navigation.screen.ApplicationGraphScreen.ReviewScreen
 import app.mat.movie.presentation.screen.details.component.MovplayMovieDetailsInfoSection
 import app.mat.movie.presentation.screen.details.component.MovplayMovieDetailsTopContent
 import app.mat.movie.presentation.theme.spacing
@@ -61,6 +80,9 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
 ) {
     val context = LocalContext.current
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    val movieId = uiState.movieDetails?.id ?: 0
+    val startRoute = uiState.startRoute
 
     val onBackClicked: () -> Unit = {
         navHostController.navigateUp()
@@ -107,10 +129,15 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
     }
 
     val onMemberClicked: (personId: Int) -> Unit = { personId: Int ->
+
+
         navHostController.navigate(
             PersonDetailsScreen.passArguments(
                 personId = personId,
-                startRoute = MovieDetailsScreen.route
+                startRoute = MovieDetailsScreen.passArguments(
+                    movieId = movieId,
+                    startRoute = startRoute
+                )
             )
         )
     }
@@ -119,43 +146,49 @@ fun AnimatedVisibilityScope.MovieDetailsScreen(
         navHostController.navigate(
             MovieDetailsScreen.passArguments(
                 movieId = movieId,
-                startRoute = MovieDetailsScreen.route
+                startRoute = MovieDetailsScreen.passArguments(
+                    movieId = movieId,
+                    startRoute = startRoute
+                )
             )
         )
     }
 
     val onReviewsClicked: () -> Unit = {
-        val movieId = uiState.movieDetails?.id ?: 0
-
         navHostController.navigate(
             ReviewScreen.passArguments(
                 mediaId = movieId,
                 mediaType = MediaType.Movie.toJsonString(),
-                startRoute = MovieDetailsScreen.route
+                startRoute = MovieDetailsScreen.passArguments(
+                    movieId = movieId,
+                    startRoute = startRoute
+                )
             )
         )
     }
 
     val onSimilarMoreClicked = {
-        val movieId = uiState.movieDetails?.id ?: 0
-
         navHostController.navigate(
             RelatedMoviesScreen.passArguments(
                 movieId = movieId,
                 relationType = RelationType.Similar.toJsonString(),
-                startRoute = MovieDetailsScreen.route
+                startRoute = MovieDetailsScreen.passArguments(
+                    movieId = movieId,
+                    startRoute = startRoute
+                )
             )
         )
     }
 
     val onRecommendationsMoreClicked = {
-        val movieId = uiState.movieDetails?.id ?: 0
-
         navHostController.navigate(
             RelatedMoviesScreen.passArguments(
                 movieId = movieId,
                 relationType = RelationType.Recommended.toJsonString(),
-                startRoute = MovieDetailsScreen.route
+                startRoute = MovieDetailsScreen.passArguments(
+                    movieId = movieId,
+                    startRoute = startRoute
+                )
             )
         )
     }

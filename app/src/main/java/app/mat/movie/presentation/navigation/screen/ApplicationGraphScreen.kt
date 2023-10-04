@@ -134,7 +134,7 @@ sealed class ApplicationGraphScreen(
             showId: Int,
             relationType: String,
             startRoute: String
-        ): String = RelatedMoviesScreenData.RELATED_MOVIES_SCREEN_ROUTE_KEY +
+        ): String = RelatedShowsScreenData.RELATED_SHOWS_SCREEN_ROUTE_KEY +
                 "/$showId" +
                 "/$relationType" +
                 "/$startRoute"
@@ -178,7 +178,7 @@ sealed class ApplicationGraphScreen(
     ) {
         fun passArguments(
             movieType: String
-        ): String = ReviewScreenData.REVIEW_SCREEN_ROUTE_KEY + "/$movieType"
+        ): String = BrowseMovieScreenData.BROWSE_MOVIE_SCREEN_ROUTE_KEY + "/$movieType"
     }
 
     data object BrowseShowsScreen : ApplicationGraphScreen(
@@ -187,7 +187,7 @@ sealed class ApplicationGraphScreen(
     ) {
         fun passArguments(
             showType: String
-        ): String = ReviewScreenData.REVIEW_SCREEN_ROUTE_KEY + "/$showType"
+        ): String = BrowseShowsScreenData.BROWSE_SHOWS_SCREEN_ROUTE_KEY + "/$showType"
     }
 
     data object DiscoverMovieScreen : ApplicationGraphScreen(
