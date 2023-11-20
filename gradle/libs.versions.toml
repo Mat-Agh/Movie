@@ -9,7 +9,7 @@ maxSdk = "34"
 jvmVersion = "17"
 
 # Libraries Versions
-androidGradleVersion = "8.3.0-alpha11"
+androidGradleVersion = "8.3.0-alpha14"
 kotlinVersion = "1.9.10"
 kspVersion = "1.9.10-1.0.13"
 coreVersion = "1.12.0"
