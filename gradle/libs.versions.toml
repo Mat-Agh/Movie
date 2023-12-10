@@ -9,7 +9,7 @@ maxSdk = "34"
 jvmVersion = "17"
 
 # Libraries Versions
-androidGradleVersion = "8.3.0-alpha14"
+androidGradleVersion = "8.3.0-alpha16"
 kotlinVersion = "1.9.10"
 kspVersion = "1.9.10-1.0.13"
 coreVersion = "1.12.0"
@@ -17,7 +17,7 @@ testVersion = "1.5.2"
 testCoreVersion = "1.5.0"
 jUnitVersion = "1.1.5"
 mockitoVersion = "5.3.1"
-hiltVersion = "2.46.1"
+hiltVersion = "2.48"
 lifecycleVersion = "2.6.2"
 retrofitVersion = "2.9.0"
 okHttpVersion = "5.0.0-alpha.9"
@@ -25,20 +25,21 @@ moshiVersion = "1.14.0"
 gsonVersion = "2.10.1"
 timberVersion = "5.0.1"
 chuckerVersion = "3.5.2"
-roomVersion = "2.5.2"
+roomVersion = "2.6.1"
 pagingVersion = "3.2.1"
-activityVersion = "1.7.2"
-composeNavigationVersion = "2.7.3"
-hiltNavigationComposeVersion = "1.1.0-alpha01"
-composeVersion = "1.6.0-alpha06"
+activityVersion = "1.8.1"
+composeNavigationVersion = "2.7.5"
+hiltNavigationComposeVersion = "1.1.0"
+composeVersion = "1.6.0-beta02"
 composeCompilerVersion = "1.5.3"
-materialVersion = "1.2.0-alpha08"
-constraintLayoutVersion = "1.1.0-alpha12"
+materialVersion = "1.2.0-alpha12"
+constraintLayoutVersion = "1.1.0-alpha13"
 accompanistVersion = "0.31.3-beta"
 paletteVersion = "1.0.0"
 coilVersion = "2.4.0"
 lottieVersion = "6.0.0"
-cameraXVersion = "1.3.0-beta02"
+cameraXVersion = "1.3.0-rc02"
+cameraXVersion2 = "1.4.0-alpha02"
 textRecognitionVersion = "16.0.0"
 
 [libraries]
@@ -100,7 +101,7 @@ camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "c
 cameraLifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraXVersion" }
 cameraVideo = { group = "androidx.camera", name = "camera-video", version.ref = "cameraXVersion" }
 cameraView = { group = "androidx.camera", name = "camera-view", version.ref = "cameraXVersion" }
-cameraMLKitVision = { group = "androidx.camera", name = "camera-mlkit-vision", version.ref = "cameraXVersion" }
+cameraMLKitVision = { group = "androidx.camera", name = "camera-mlkit-vision", version.ref = "cameraXVersion2" }
 cameraExtensions = { group = "androidx.camera", name = "camera-extensions", version.ref = "cameraXVersion" }
 textRecognition = { group = "com.google.mlkit", name = "text-recognition", version.ref = "textRecognitionVersion" }
 
